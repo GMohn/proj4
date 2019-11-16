@@ -52,3 +52,6 @@ $(TESTBINDIR):
 clean:
 	cd $(CSVLIBDIR); make clean ; cd ..
 	rm -f $(CSVLIBDIR)/Makefile
+	rm -f $(OBJDIR)/*.o
+	rm -f $(BINDIR)/*
+	rm -f $(TESTBINDIR)/*
