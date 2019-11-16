@@ -9,6 +9,9 @@ BINDIR=./bin
 OBJDIR=./obj
 TESTBINDIR=./testbin
 
+CXXFLAGS = --std=c++14 -I $(INCDIR) $(CSVLIBDIR)
+TESTLDFlAGS= -lgtest -lgtest_main -lpthread
+
 CSVOBJS=$(OBJDIR)/CSVReader.o
 
 CSVTEST=testcsv
@@ -27,6 +30,13 @@ $(CSVLIBDIR)/Makefile:
 	cd $(CSVLIBDIR); ./configure ; cd ..
 
 $(TESTBINDIR)/$(CSVTEST): $(OBJDIR)/testcsv.o $(CSVOBJS) $(CSVLIBDIR)/.libs/$(CSVLIB)
+	$(CXX) $(CXXFLAGS) $(OBJDIR)/testcsv.o $(CSVOBJS) $(CSVLIBDIR)/.libs/$(CSVLIB) -o $(TESTBINDIR)/$(CSVTEST) $(TESTLDFlAGS)
+
+$(OBJDIR)/testcsv.o: $(SRCDIR)/testcsv.cpp $(INCDIR)/CSVreader.h
+	$(CXX) $(CXXFLAGS) $(SRCDIR)testcsv.cpp -c -o $(OBJDIR)/testcsv.o
+
+$(OBJDIR)/CSVreader.o: $(SRCDIR)/CSVreader.cpp $(INCDIR)/CSVreader.h
+	$(CXX) $(CXXFLAGS) $(SRCDIR)CSVreader.cpp -c -o $(OBJDIR)/CSVreader.o
 
 directories: $(BINDIR) $(OBJDIR) $(TESTBINDIR)
 
