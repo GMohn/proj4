@@ -37,20 +37,20 @@ $(CSVLIBDIR)/Makefile:
 $(TESTBINDIR)/$(CSVTEST): $(OBJDIR)/testcsv.o $(CSVOBJS) $(CSVLIBDIR)/.libs/$(CSVLIB)
 	$(CXX) $(CXXFLAGS) $(OBJDIR)/testcsv.o $(CSVOBJS) $(CSVLIBDIR)/.libs/$(CSVLIB) -o $(TESTBINDIR)/$(CSVTEST) $(TESTLDFlAGS)
 
-$(OBJDIR)/testcsv.o: $(SRCDIR)/testcsv.cpp $(INCDIR)/CSVreader.h
+$(OBJDIR)/testcsv.o: $(SRCDIR)/testcsv.cpp $(INCDIR)/CSVReader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)testcsv.cpp -c -o $(OBJDIR)/testcsv.o
 
-$(OBJDIR)/CSVreader.o: $(SRCDIR)/CSVreader.cpp $(INCDIR)/CSVreader.h
-	$(CXX) $(CXXFLAGS) $(SRCDIR)CSVreader.cpp -c -o $(OBJDIR)/CSVreader.o
+$(OBJDIR)/CSVReader.o: $(SRCDIR)/CSVReader.cpp $(INCDIR)/CSVReader.h
+	$(CXX) $(CXXFLAGS) $(SRCDIR)CSVReader.cpp -c -o $(OBJDIR)/CSVReader.o
 
 $(TESTBINDIR)/$(XMLTEST): $(OBJDIR)/testxml.o $(XMLOBJS)
 	$(CXX) $(CXXFLAGS) $(OBJDIR)/testxml.o $(XMLOBJS) -o $(TESTBINDIR)/$(XMLTEST) $(TESTLDFlAGS)
 
-$(OBJDIR)/testxml.o: $(SRCDIR)/testxml.cpp $(INCDIR)/XMLreader.h
+$(OBJDIR)/testxml.o: $(SRCDIR)/testxml.cpp $(INCDIR)/XMLReader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)testxml.cpp -c -o $(OBJDIR)/testxml.o
 
-$(OBJDIR)/XMLreader.o: $(SRCDIR)/XMLreader.cpp $(INCDIR)/XMLreader.h
-	$(CXX) $(CXXFLAGS) $(SRCDIR)XMLreader.cpp -c -o $(OBJDIR)/XMLreader.o
+$(OBJDIR)/XMLReader.o: $(SRCDIR)/XMLReader.cpp $(INCDIR)/XMLReader.h
+	$(CXX) $(CXXFLAGS) $(SRCDIR)XMLReader.cpp -c -o $(OBJDIR)/XMLReader.o
 
 directories: $(BINDIR) $(OBJDIR) $(TESTBINDIR)
 
