@@ -7,7 +7,8 @@
 
 class CXMLReader{
     private:
-        
+		std::istream& DInput;
+		XML_Parser DParser;
     public:
         CXMLReader(std::istream &is);
         ~CXMLReader();

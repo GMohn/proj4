@@ -11,17 +11,22 @@ TESTBINDIR=./testbin
 
 CXXFLAGS = --std=c++14 -I $(INCDIR) $(CSVLIBDIR)
 TESTLDFlAGS= -lgtest -lgtest_main -lpthread
+XMLLDFLAGS= -lexpat
 
 CSVOBJS=$(OBJDIR)/CSVReader.o
+XMLOBJS=$(OBJDIR)/XMLReader.o
 
 CSVTEST=testcsv
 
 all: $(CSVLIBDIR)/.libs/$(CSVLIB) directories RUNTESTS
 
-RUNTESTS: RUNCSVTEST
+RUNTESTS: RUNCSVTEST RUNXMLTEST
 
 RUNCSVTEST: $(TESTBINDIR)/$(CSVTEST)
 	$(TESTBINDIR)/$(CSVTEST)
+
+RUNXMLTEST: $(TESTBINDIR)/$(XMLTEST)
+	$(TESTBINDIR)/$(XMLTEST)
 
 $(CSVLIBDIR)/.libs/$(CSVLIB): $(CSVLIBDIR)/Makefile
 	cd $(CSVLIBDIR); make ; cd ..
@@ -37,6 +42,15 @@ $(OBJDIR)/testcsv.o: $(SRCDIR)/testcsv.cpp $(INCDIR)/CSVreader.h
 
 $(OBJDIR)/CSVreader.o: $(SRCDIR)/CSVreader.cpp $(INCDIR)/CSVreader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)CSVreader.cpp -c -o $(OBJDIR)/CSVreader.o
+
+$(TESTBINDIR)/$(XMLTEST): $(OBJDIR)/testxml.o $(XMLOBJS)
+	$(CXX) $(CXXFLAGS) $(OBJDIR)/testxml.o $(XMLOBJS) -o $(TESTBINDIR)/$(XMLTEST) $(TESTLDFlAGS)
+
+$(OBJDIR)/testxml.o: $(SRCDIR)/testxml.cpp $(INCDIR)/XMLreader.h
+	$(CXX) $(CXXFLAGS) $(SRCDIR)testxml.cpp -c -o $(OBJDIR)/testxml.o
+
+$(OBJDIR)/XMLreader.o: $(SRCDIR)/XMLreader.cpp $(INCDIR)/XMLreader.h
+	$(CXX) $(CXXFLAGS) $(SRCDIR)XMLreader.cpp -c -o $(OBJDIR)/XMLreader.o
 
 directories: $(BINDIR) $(OBJDIR) $(TESTBINDIR)
 
