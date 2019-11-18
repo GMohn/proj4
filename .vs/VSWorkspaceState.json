@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\include",
+    "\\libcsv-3.0.3",
     "\\src"
   ],
-  "SelectedNode": "\\include\\CSVWriter.h",
+  "SelectedNode": "\\libcsv-3.0.3\\test_csv.c",
   "PreviewInSolutionExplorer": false
 }
