@@ -47,7 +47,7 @@ $(TESTBINDIR)/$(XMLTEST): $(OBJDIR)/testxml.o $(XMLOBJS)
 	$(CXX) $(CXXFLAGS) $(OBJDIR)/testxml.o $(XMLOBJS) -o $(TESTBINDIR)/$(XMLTEST) $(TESTLDFlAGS)
 
 $(OBJDIR)/testxml.o: $(SRCDIR)/testxml.cpp $(INCDIR)/XMLReader.h
-	$(CXX) $(CXXFLAGS) $(SRCDIR)testxml.cpp -c -o $(OBJDIR)/testxml.o
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/testxml.cpp -c -o $(OBJDIR)/testxml.o
 
 $(OBJDIR)/XMLReader.o: $(SRCDIR)/XMLReader.cpp $(INCDIR)/XMLReader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)XMLReader.cpp -c -o $(OBJDIR)/XMLReader.o
