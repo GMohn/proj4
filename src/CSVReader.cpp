@@ -8,7 +8,7 @@ CCSVReader::~CCSVReader(){
 	csv_free(&DParser);
 }
 void CCSVReader::EndOfColumn(void* str, size_t len, void *reader) {
-	auto Reader = static_cast<CSVReader *>(reader);
+	auto Reader = static_cast<CCSVReader *>(reader);
 	auto Column = std::string(static_cast<const char*>(str), len);
 	Reader->DCurrentRow.push_back(Column);
 }
@@ -35,7 +35,7 @@ bool CCSVReader::ReadRow(std::vector< std::string > &row){
 			break;
 		}
 	}
-	if (DBufferedRows, empty()) {
+	if (DBufferedRows.empty()) {
 		return false;
 	}
 	row = DBufferedRows.front();
