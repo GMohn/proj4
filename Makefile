@@ -17,6 +17,7 @@ CSVOBJS=$(OBJDIR)/CSVReader.o
 XMLOBJS=$(OBJDIR)/XMLReader.o
 
 CSVTEST=testcsv
+XMLTEST=testxml
 
 all: $(CSVLIBDIR)/.libs/$(CSVLIB) directories RUNTESTS
 
