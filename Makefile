@@ -9,7 +9,7 @@ BINDIR=./bin
 OBJDIR=./obj
 TESTBINDIR=./testbin
 
-CXXFLAGS = --std=c++14 -I $(INCDIR) $(CSVLIBDIR)
+CXXFLAGS = --std=c++14 -I $(INCDIR) -I $(CSVLIBDIR)
 TESTLDFlAGS= -lgtest -lgtest_main -lpthread
 XMLLDFLAGS= -lexpat
 
