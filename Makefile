@@ -50,7 +50,7 @@ $(OBJDIR)/testxml.o: $(SRCDIR)/testxml.cpp $(INCDIR)/XMLReader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)/testxml.cpp -c -o $(OBJDIR)/testxml.o
 
 $(OBJDIR)/XMLReader.o: $(SRCDIR)/XMLReader.cpp $(INCDIR)/XMLReader.h
-	$(CXX) $(CXXFLAGS) $(SRCDIR)XMLReader.cpp -c -o $(OBJDIR)/XMLReader.o
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/XMLReader.cpp -c -o $(OBJDIR)/XMLReader.o
 
 directories: $(BINDIR) $(OBJDIR) $(TESTBINDIR)
 
