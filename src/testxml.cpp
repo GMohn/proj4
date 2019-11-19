@@ -2,9 +2,9 @@
 #include "XMLReader.h"
 #include <sstream>
 
-TEST(XMLReader, EmptyTest) {
+TEST(CXMLReader, EmptyTest) {
 	std::stringstream Input;
-	XMLReader Reader(Input);
+	CXMLReader Reader(Input);
 
 	EXPECT_TRUE(Reader.End());
 }
