@@ -12,7 +12,7 @@ bool CXMLReader::End() {
 
 }
 
-bool CXMLReader::ReadEntity(SXMLEntity, &entity, bool skipcdata) {
+bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata) {
 	char Buffer[1024];
 	DInput.read(Buffer, sizeof(Buffer));
 	
