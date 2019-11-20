@@ -2,9 +2,9 @@
 
 CXMLReader::CXMLReader(std::istream& is) : DInput(is) {
 	DParser = XML_ParserCreate(NULL);
-	XML_SetUserData(Dparser, this);
-	XML_SetElementHandler(DParser, StartOfTags, EndOfTags);
-	XML_SetCharacterDataHandler(Dparser, DText);
+	XML_SetUserData(DParser, this);
+	XML_SetElementHandler(DParser, StartOfElements, EndOfElements);
+	XML_SetCharacterDataHandler(DParser, CharOfElements);
 }
 
 CXMLReader::~CXMLReader() {
@@ -12,7 +12,7 @@ CXMLReader::~CXMLReader() {
 }
 
 void CXMLReader::StartOfElements(void* data, const char* el, const char* attr[]) {
-	auto Reader = static_cast<CXMLReader*>(reader);
+	auto Reader = static_cast<CXMLReader*>(data);
 	SXMLEntity XMLElement;
 	XMLElement.DType = SXMLEntity::EType::StartElement;
 	XMLElement.DNameData = std::string(el);
@@ -21,6 +21,13 @@ void CXMLReader::StartOfElements(void* data, const char* el, const char* attr[])
 	}
 	Reader->DBuffered.push_back(XMLElement);
 }
+static void EndOfElements(void* data, const char* el) {
+
+}
+static void CharOfElements(void* data, const char* el, size_t len) {
+
+}
+
 bool CXMLReader::End() {
 	
 }
