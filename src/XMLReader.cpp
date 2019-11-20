@@ -22,14 +22,23 @@ void CXMLReader::StartOfElements(void* data, const char* el, const char* attr[])
 	Reader->DBuffered.push_back(XMLElement);
 }
 void CXMLReader::EndOfElements(void* data, const char* el) {
-
+	auto Reader = static_cast<CXMLReader*>(data);
+	SXMLEntity XMLElement;
+	XMLElement.DType = SXMLEntity::EType::EndElement;
+	XMLElement.DNameData = std::string(el);
+	Reader->DBuffered.push_back(XMLElement);
 }
 void CXMLReader::CharOfElements(void* data, const char* el, int len) {
-
+	auto Reader = static_cast<CXMLReader*>(data);
+	SXMLEntity XMLElement;
+	XMLElement.DType = SXMLEntity::EType::CharData;
+	XMLElement.DNameData = std::string(el, len);
+	Reader->DBuffered.push_back(XMLElement);
+}
 }
 
 bool CXMLReader::End() {
-	
+	return DBuffered.empty();
 }
 
 bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata) {
