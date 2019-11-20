@@ -45,7 +45,7 @@ $(OBJDIR)/CSVReader.o: $(SRCDIR)/CSVReader.cpp $(INCDIR)/CSVReader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)/CSVReader.cpp -c -o $(OBJDIR)/CSVReader.o
 
 $(TESTBINDIR)/$(XMLTEST): $(OBJDIR)/testxml.o $(XMLOBJS)
-	$(CXX) $(CXXFLAGS) $(OBJDIR)/testxml.o $(XMLOBJS) -o $(TESTBINDIR)/$(XMLTEST) $(TESTLDFlAGS)
+	$(CXX) $(CXXFLAGS) $(OBJDIR)/testxml.o $(XMLOBJS) -o $(TESTBINDIR)/$(XMLTEST) $(TESTLDFlAGS) $(XMLLDFLAGS)
 
 $(OBJDIR)/testxml.o: $(SRCDIR)/testxml.cpp $(INCDIR)/XMLReader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)/testxml.cpp -c -o $(OBJDIR)/testxml.o

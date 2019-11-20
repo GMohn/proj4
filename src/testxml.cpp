@@ -9,7 +9,7 @@ TEST(XMLReader, EmptyTest) {
 	EXPECT_TRUE(Reader.End());
 }
 
-TEST(XMLREADER, SimpleTest) {
+TEST(XMLReader, SimpleTest) {
 	std::stringstream Input("<tag><other></other></tag>");
 	CXMLReader Reader(Input);
 	SXMLEntity Entity;

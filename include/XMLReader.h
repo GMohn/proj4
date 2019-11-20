@@ -7,14 +7,13 @@
 
 class CXMLReader{
     private:
-		std::istream& DInput;
-		XML_Parser DParser;
+
     public:
-        CXMLReader::CXMLReader(std::istream &is);
-        CXMLReader::~CXMLReader();
+        CXMLReader(std::istream &is);
+        ~CXMLReader();
         
-        bool CXMLReader::End();
-        bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata = false);
+        bool End();
+        bool ReadEntity(SXMLEntity &entity, bool skipcdata = false);
 };
 
 #endif
