@@ -9,12 +9,13 @@ CXMLReader::~CXMLReader() {
 }
 
 bool CXMLReader::End() {
-
+	
 }
 
 bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata) {
 	char Buffer[1024];
 	DInput.read(Buffer, sizeof(Buffer));
+	XML_Parse(DParser, Buffer, DInput.gcount(), DInput.eof());
 	
 
 }

@@ -2,9 +2,29 @@
 #include "XMLReader.h"
 #include <sstream>
 
-TEST(CXMLReader, EmptyTest) {
+TEST(XMLReader, EmptyTest) {
 	std::stringstream Input;
 	CXMLReader Reader(Input);
 
+	EXPECT_TRUE(Reader.End());
+}
+
+TEST(XMLREADER, SimpleTest) {
+	std::stringstream Input("<tag><other></other></tag>");
+	CXMLReader Reader(Input);
+	SXMLEntity Entity;
+
+	EXPECT_TRUE(Reader.ReadEntity(Entity));
+	EXPECT_EQ(Entity.DType, SXMLEntity::EType::StartElement);
+	EXPECT_EQ(Entity.DNameData, "tag");
+	EXPECT_TRUE(Reader.ReadEntity(Entity));
+	EXPECT_EQ(Entity.DType, SXMLEntity::EType::StartElement);
+	EXPECT_EQ(Entity.DNameData, "other");
+	EXPECT_TRUE(Reader.ReadEntity(Entity));
+	EXPECT_EQ(Entity.DType, SXMLEntity::EType::EndElement);
+	EXPECT_EQ(Entity.DNameData, "other");
+	EXPECT_TRUE(Reader.ReadEntity(Entity));
+	EXPECT_EQ(Entity.DType, SXMLEntity::EType::EndElement);
+	EXPECT_EQ(Entity.DNameData, "tag");
 	EXPECT_TRUE(Reader.End());
 }
