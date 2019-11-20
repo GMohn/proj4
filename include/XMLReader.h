@@ -10,11 +10,11 @@ class CXMLReader{
 		std::istream& DInput;
 		XML_Parser DParser;
     public:
-        CXMLReader(std::istream &is);
-        ~CXMLReader();
+        CXMLReader::CXMLReader(std::istream &is);
+        CXMLReader::~CXMLReader();
         
-        bool End();
-        bool ReadEntity(SXMLEntity &entity, bool skipcdata = false);
+        bool CXMLReader::End();
+        bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata = false);
 };
 
 #endif
