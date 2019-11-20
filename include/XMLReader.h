@@ -13,7 +13,7 @@ class CXMLReader{
 		std::list<SXMLEntity> DBuffered;
 		static void StartOfElements(void* data, const char* el, const char** attr);
 		static void EndOfElements(void* data, const char* el);
-		static void CharOfElements(void* data, const char* el, size_t len);
+		static void CharOfElements(void* data, const char* el, int len);
     public:
         CXMLReader(std::istream &is);
         ~CXMLReader();
