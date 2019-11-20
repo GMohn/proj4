@@ -35,7 +35,7 @@ void CXMLReader::CharOfElements(void* data, const char* el, int len) {
 	XMLElement.DNameData = std::string(el, len);
 	Reader->DBuffered.push_back(XMLElement);
 }
-}
+
 
 bool CXMLReader::End() {
 	return DBuffered.empty();
