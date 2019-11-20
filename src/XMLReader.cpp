@@ -21,10 +21,10 @@ void CXMLReader::StartOfElements(void* data, const char* el, const char* attr[])
 	}
 	Reader->DBuffered.push_back(XMLElement);
 }
-static void CXMLReader::EndOfElements(void* data, const char* el) {
+void CXMLReader::EndOfElements(void* data, const char* el) {
 
 }
-static void CXMLReader::CharOfElements(void* data, const char* el, int len) {
+void CXMLReader::CharOfElements(void* data, const char* el, int len) {
 
 }
 
