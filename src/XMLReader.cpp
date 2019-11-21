@@ -47,6 +47,11 @@ bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata) {
 		DInput.read(Buffer, sizeof(Buffer));
 		XML_Parse(DParser, Buffer, DInput.gcount(), DInput.eof());
 	}
-	
-
+	if (skipcdata) {
+		while (DBuffered.front().DType == SXMLEntity::EType::CharData) {
+			DBuffered.pop_front();
+		}
+		return true;
+	}
+	return false;
 }
