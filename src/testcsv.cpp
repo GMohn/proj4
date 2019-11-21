@@ -9,7 +9,7 @@ TEST(CSVReader,EmptyTest){
     EXPECT_TRUE(Reader.End());
 }
 
-Test(CSVReader,SingleLineTest){
+TEST(CSVReader,SingleLineTest){
     std::stringstream Input(" 1,2 ,  3         ,4,5\x0d\x0a");
     CCSVReader Reader(Input);
     std::vector<std::string> Row;
