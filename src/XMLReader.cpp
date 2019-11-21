@@ -38,7 +38,10 @@ void CXMLReader::CharOfElements(void* data, const char* el, int len) {
 
 
 bool CXMLReader::End() {
-	return DBuffered.empty();
+	if(!DInput.eof()){
+		DInput.peek();
+	}
+	return DBuffered.empty() and DInput.eof();
 }
 
 bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata) {
