@@ -1,4 +1,6 @@
 #include "XMLReader.h"
+#include <iostream>
+
 
 CXMLReader::CXMLReader(std::istream& is) : DInput(is) {
 	DParser = XML_ParserCreate(NULL);
@@ -11,17 +13,21 @@ CXMLReader::~CXMLReader() {
 	XML_ParserFree(DParser);
 }
 
-void CXMLReader::StartOfElements(void* data, const char* el, const char* attr[]) {
+void CXMLReader::StartOfElements(void* data, const char* el, const char** attr) {
+	std::cout << "@ " << __LINE__ << std::endl;
 	auto Reader = static_cast<CXMLReader*>(data);
 	SXMLEntity XMLElement;
 	XMLElement.DType = SXMLEntity::EType::StartElement;
 	XMLElement.DNameData = std::string(el);
-	for (int i = 0; attr[i]; i += 2) {
+	int i = 0;
+	//loop through attributes and load them in entity
+	for (i = 0; attr[0] && attr[i + 2]; i += 2) {
 		XMLElement.SetAttribute(std::string(attr[i]), std::string(attr[i + 1]));
 	}
 	Reader->DBuffered.push_back(XMLElement);
 }
 void CXMLReader::EndOfElements(void* data, const char* el) {
+	std::cout << "@ " << __LINE__ << std::endl;
 	auto Reader = static_cast<CXMLReader*>(data);
 	SXMLEntity XMLElement;
 	XMLElement.DType = SXMLEntity::EType::EndElement;
@@ -29,6 +35,7 @@ void CXMLReader::EndOfElements(void* data, const char* el) {
 	Reader->DBuffered.push_back(XMLElement);
 }
 void CXMLReader::CharOfElements(void* data, const char* el, int len) {
+	std::cout << "@ " << __LINE__ << std::endl;
 	auto Reader = static_cast<CXMLReader*>(data);
 	SXMLEntity XMLElement;
 	XMLElement.DType = SXMLEntity::EType::CharData;
@@ -45,16 +52,22 @@ bool CXMLReader::End() {
 }
 
 bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata) {
+	std::cout << "@ " << __LINE__ << std::endl;
 	char Buffer[1024];
 	while (!DInput.eof()) {
 		DInput.read(Buffer, sizeof(Buffer));
 		XML_Parse(DParser, Buffer, DInput.gcount(), DInput.eof());
+		std::cout << "@ " << __LINE__ << std::endl;
 	}
-	if (skipcdata) {
-		while (DBuffered.front().DType == SXMLEntity::EType::CharData) {
-			DBuffered.pop_front();
+	if (!DBuffered.empty()) {
+		if (skipcdata) {
+			while (DBuffered.front().DType == SXMLEntity::EType::CharData) {
+				DBuffered.pop_front();
+			}
 		}
+		entity = DBuffered.front();
+		DBuffered.pop_front();
 		return true;
 	}
-	return false;
+
 }
