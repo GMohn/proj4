@@ -60,6 +60,7 @@ bool CXMLReader::ReadEntity(SXMLEntity &entity, bool skipcdata) {
 		std::cout << "@ " << __LINE__ << std::endl;
 	}
 	if (!DBuffered.empty()) {
+		//pop data
 		if (skipcdata) {
 			while (DBuffered.front().DType == SXMLEntity::EType::CharData) {
 				DBuffered.pop_front();

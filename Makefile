@@ -14,7 +14,8 @@ TESTLDFlAGS= -lgtest -lgtest_main -lpthread
 XMLLDFLAGS= -lexpat
 
 CSVOBJS=$(OBJDIR)/CSVReader.o
-XMLOBJS=$(OBJDIR)/XMLReader.o
+XMLOBJS=$(OBJDIR)/XMLReader.o 
+
 
 CSVTEST=testcsv
 XMLTEST=testxml
@@ -52,6 +53,9 @@ $(OBJDIR)/testxml.o: $(SRCDIR)/testxml.cpp $(INCDIR)/XMLReader.h
 
 $(OBJDIR)/XMLReader.o: $(SRCDIR)/XMLReader.cpp $(INCDIR)/XMLReader.h
 	$(CXX) $(CXXFLAGS) $(SRCDIR)/XMLReader.cpp -c -o $(OBJDIR)/XMLReader.o
+
+$(OBJDIR)/CSVWriter.o: $(SRCDIR)/CSVWriter.cpp $(INCDIR)/CSVWriter.h
+	$(CXX) $(CXXFLAGS) $(SRCDIR)/CSVWriter.cpp -c -o $(OBJDIR)/CSVWriter.o
 
 directories: $(BINDIR) $(OBJDIR) $(TESTBINDIR)
 
