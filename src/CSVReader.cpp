@@ -22,7 +22,7 @@ bool CCSVReader::End() const{
 	if (!DInput.eof()) {
 		DInput.peek();
 	}
-	return DInput.eof() and DBufferedRows.empty();
+	return DInput.eof() && DBufferedRows.empty();
 }
 
 bool CCSVReader::ReadRow(std::vector< std::string > &row){

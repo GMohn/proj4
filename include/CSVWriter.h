@@ -4,10 +4,11 @@
 #include <ostream>
 #include <string>
 #include <vector>
-
+#include "csv.h"
 
 class CCSVWriter{
     protected:
+		std::ostream& DOutput;
 
     public:
         CCSVWriter(std::ostream &ou);
